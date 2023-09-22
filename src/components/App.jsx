@@ -16,22 +16,20 @@ import Layout from './Layout';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <AuthProvider>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="quize" element={<Quize />} />
-          <Route path="result" element={<Result />} />
-          <Route path="signup" element={<Signup />} />
-        </Route>
-      </AuthProvider>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="quize" element={<Quize />} />
+        <Route path="result" element={<Result />} />
+        <Route path="signup" element={<Signup />} />
+      </Route>
     )
   );
 
   return (
-    <>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </>
+    </AuthProvider>
   );
 }
 

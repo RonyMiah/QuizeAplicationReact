@@ -7,8 +7,14 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
+
+import '../../FirebaseConfig';
+
 const Context = createContext();
 
+// export function useAuth() {
+//   return useContext(Context);
+// }
 export function useAuth() {
   return useContext(Context);
 }
@@ -23,10 +29,15 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const auth = getAuth();
     const unsubcribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
       setLoading(false);
+      if (user) setCurrentUser(user);
+      else {
+        setCurrentUser(null);
+      }
     });
-    return unsubcribe;
+    return () => {
+      if (unsubcribe) unsubcribe();
+    };
   }, []);
 
   //signup
