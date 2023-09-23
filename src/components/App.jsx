@@ -12,16 +12,48 @@ import Quize from '../pages/Quize';
 import Result from '../pages/Result';
 import Signup from '../pages/Signup';
 import Layout from './Layout';
+import PrivetRoute from './PrivetRoute';
+import PublicRoute from './PublicRoute';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="quize" element={<Quize />} />
-        <Route path="result" element={<Result />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="home" element={<Home />} />
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="quize"
+          element={
+            <PrivetRoute>
+              {' '}
+              <Quize />
+            </PrivetRoute>
+          }
+        />
+        <Route
+          path="result"
+          element={
+            <PrivetRoute>
+              <Result />
+            </PrivetRoute>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
       </Route>
     )
   );

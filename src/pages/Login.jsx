@@ -1,9 +1,6 @@
-import { Link } from 'react-router-dom';
 import images from '../assets/images/login.svg';
-import Button from '../components/Button';
-import Form from '../components/Form';
 import Illustration from '../components/Illustration';
-import TextInput from '../components/TextInput';
+import LoginFormWithReducer from '../components/LoginFormWithReducer';
 
 function Login() {
   return (
@@ -11,19 +8,9 @@ function Login() {
       <h1>Login to your account</h1>
       <div className="column">
         <Illustration images={images} />
-        <Form>
-          <TextInput type="text" placeholder="Enter email" />
-          <TextInput ype="password" placeholder="Enter password" />
+        {/* <LoginFrom /> */}
 
-          <Button>
-            {' '}
-            <span> Login now </span>{' '}
-          </Button>
-
-          <div className="info">
-            Dont have an account? <Link to="/signup">SignUp </Link> instead.
-          </div>
-        </Form>
+        <LoginFormWithReducer />
       </div>
     </div>
   );

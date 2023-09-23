@@ -35,9 +35,7 @@ export function AuthProvider({ children }) {
         setCurrentUser(null);
       }
     });
-    return () => {
-      if (unsubcribe) unsubcribe();
-    };
+    return unsubcribe;
   }, []);
 
   //signup
@@ -46,7 +44,7 @@ export function AuthProvider({ children }) {
     await createUserWithEmailAndPassword(auth, email, password);
 
     //update User Profile
-    updateProfile(auth.currentUser, { displayName: { username } });
+    updateProfile(auth.currentUser, { displayName: username });
 
     //set localstate currentuser
     const user = auth.currentUser;
@@ -68,6 +66,8 @@ export function AuthProvider({ children }) {
   }
 
   const value = {
+    loading,
+    setLoading,
     currentUser,
     singUp,
     logIn,
