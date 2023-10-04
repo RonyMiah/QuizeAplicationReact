@@ -73,6 +73,7 @@ export function AuthProvider({ children }) {
     logIn,
     logOut,
   };
+  console.log(currentUser);
   return (
     <Context.Provider value={value}>{!loading && children}</Context.Provider>
   );

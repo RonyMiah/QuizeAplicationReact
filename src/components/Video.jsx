@@ -1,13 +1,17 @@
-import images from '../assets/images/3.jpg';
 import styles from '../components/style/Video.module.css';
-function Video() {
+// eslint-disable-next-line react/prop-types
+function Video({ title, id, noq }) {
   return (
     <div className={styles.video}>
-      <img src={images} alt="" />
-      <p>#23 React Hooks Bangla - React useReducer hook Bangla</p>
+      <img
+        style={{ width: '100%', height: '100%' }}
+        src={`http://img.youtube.com/vi/${id}/hqdefault.jpg`}
+        alt=""
+      />
+      <p>{title}</p>
       <div className={styles.qmeta}>
-        <p>10 Questions</p>
-        <p>Score : Not taken yet</p>
+        <p>{noq} Questions</p>
+        <p>Total Point : {noq * 5}</p>
       </div>
     </div>
   );

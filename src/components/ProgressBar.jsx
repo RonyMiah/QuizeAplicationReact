@@ -1,26 +1,31 @@
-import { Link } from 'react-router-dom';
 import Button from './Button';
 import styles from './style/ProgressBar.module.css';
 
-function ProgressBar() {
+// eslint-disable-next-line react/prop-types
+function ProgressBar({ next, prev, progress, submit }) {
   return (
     <>
       <div className={styles.progressBar}>
-        <div className={styles.backButton}>
+        <div onClick={prev} className={styles.backButton}>
           <span className="material-icons-outlined"> arrow_back </span>
         </div>
         <div className={styles.rangeArea}>
-          <div className={styles.tooltip}>24% Cimplete!</div>
+          <div className={styles.tooltip}>{progress}% Cimplete!</div>
           <div className={styles.rangeBody}>
-            <div className={styles.progress} style={{ width: '20%' }}></div>
+            <div
+              className={styles.progress}
+              style={{ width: `${progress}%` }}
+            ></div>
           </div>
         </div>
-        <Link to="/result">
-          <Button className={styles.next}>
-            <span>Next Question</span>
-            <span className="material-icons-outlined"> arrow_forward </span>
-          </Button>
-        </Link>
+
+        <Button
+          onClick={progress === 100 ? submit : next}
+          className={styles.next}
+        >
+          <span>Next Question</span>
+          <span className="material-icons-outlined"> arrow_forward </span>
+        </Button>
       </div>
     </>
   );

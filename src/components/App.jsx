@@ -30,7 +30,7 @@ function App() {
           }
         />
         <Route
-          path="quize"
+          path="quize/:id"
           element={
             <PrivetRoute>
               {' '}
@@ -39,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path="result"
+          path="result/:id"
           element={
             <PrivetRoute>
               <Result />

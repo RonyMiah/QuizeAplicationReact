@@ -74,7 +74,7 @@ function LoginFormWithReducer() {
         />
         <TextInput
           required
-          ype="password"
+          type="password"
           placeholder="Enter password"
           value={updateState.password}
           onChange={(e) =>
