@@ -7,16 +7,12 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
-
 import '../../FirebaseConfig';
 
-const Context = createContext();
+const AuthContex = createContext();
 
-// export function useAuth() {
-//   return useContext(Context);
-// }
 export function useAuth() {
-  return useContext(Context);
+  return useContext(AuthContex);
 }
 
 // eslint-disable-next-line react/prop-types
@@ -25,15 +21,11 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
 
   //handle setLoading it's a side effect
-
   useEffect(() => {
     const auth = getAuth();
     const unsubcribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
       setLoading(false);
-      if (user) setCurrentUser(user);
-      else {
-        setCurrentUser(null);
-      }
     });
     return unsubcribe;
   }, []);
@@ -44,9 +36,9 @@ export function AuthProvider({ children }) {
     await createUserWithEmailAndPassword(auth, email, password);
 
     //update User Profile
-    updateProfile(auth.currentUser, { displayName: username });
+    await updateProfile(auth.currentUser, { displayName: username });
 
-    //set localstate currentuser
+    //set local state currentuser
     const user = auth.currentUser;
     setCurrentUser({
       ...user,
@@ -73,8 +65,10 @@ export function AuthProvider({ children }) {
     logIn,
     logOut,
   };
-  console.log(currentUser);
+
   return (
-    <Context.Provider value={value}>{!loading && children}</Context.Provider>
+    <AuthContex.Provider value={value}>
+      {!loading && children}
+    </AuthContex.Provider>
   );
 }

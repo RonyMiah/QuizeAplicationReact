@@ -1,8 +1,21 @@
+import { useRef, useState } from 'react';
 import Button from './Button';
 import styles from './style/ProgressBar.module.css';
 
 // eslint-disable-next-line react/prop-types
 function ProgressBar({ next, prev, progress, submit }) {
+  const [toltip, setToltip] = useState(false);
+  const toltipRef = useRef();
+  const toggleToltio = () => {
+    if (toltip) {
+      setToltip(false);
+      toltipRef.current.style.display = 'none';
+    } else {
+      setToltip(true);
+      toltipRef.current.style.left = `calc(${progress}% - 65px)`;
+      toltipRef.current.style.display = 'block';
+    }
+  };
   return (
     <>
       <div className={styles.progressBar}>
@@ -10,11 +23,15 @@ function ProgressBar({ next, prev, progress, submit }) {
           <span className="material-icons-outlined"> arrow_back </span>
         </div>
         <div className={styles.rangeArea}>
-          <div className={styles.tooltip}>{progress}% Cimplete!</div>
+          <div ref={toltipRef} className={styles.tooltip}>
+            {progress}% Cimplete!
+          </div>
           <div className={styles.rangeBody}>
             <div
               className={styles.progress}
               style={{ width: `${progress}%` }}
+              onMouseOver={toggleToltio}
+              onMouseOut={toggleToltio}
             ></div>
           </div>
         </div>
@@ -23,7 +40,7 @@ function ProgressBar({ next, prev, progress, submit }) {
           onClick={progress === 100 ? submit : next}
           className={styles.next}
         >
-          <span>Next Question</span>
+          <span>{progress === 100 ? 'Submit Quize ' : 'Next Question'}</span>
           <span className="material-icons-outlined"> arrow_forward </span>
         </Button>
       </div>

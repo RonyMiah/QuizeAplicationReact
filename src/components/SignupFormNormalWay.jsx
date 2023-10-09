@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/Context/AuthContext';
+
 import Button from './Button';
 import Checkbox from './Checkbox';
 import Form from './Form';
@@ -26,6 +27,7 @@ export default function SignupFormNormalWay() {
       setError('');
       setLoading(true);
       await singUp(email, password, username);
+      setLoading(false);
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -43,7 +45,7 @@ export default function SignupFormNormalWay() {
           required
           placeholder="Enter name"
           icon="person"
-          // value={formData.userName}
+          value={username}
           onChange={(e) => setUesrName(e.target.value)}
         />
         <TextInput
@@ -80,7 +82,7 @@ export default function SignupFormNormalWay() {
           onChange={(e) => setChecked(e.target.value)}
           value={checked}
         />
-        <Button type="button" disabled={loading}>
+        <Button type="submit" disabled={loading}>
           <span> SignUP now</span>
         </Button>
         {error && <p className="error">{error}</p>}

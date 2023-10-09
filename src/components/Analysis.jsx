@@ -1,13 +1,13 @@
 import Question from './Question';
 import styles from './style/Analysis.module.css';
 
-function Analysis() {
+// eslint-disable-next-line react/prop-types
+function Analysis({ answer }) {
   return (
     <>
       <div className={styles.analysis}>
         <h1>Question Analysis</h1>
-        <h4>You answerd 5 out of 10 questions correctly</h4>
-        <Question />
+        <Question answer={answer} />
       </div>
     </>
   );

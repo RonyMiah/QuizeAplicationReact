@@ -63,7 +63,7 @@ function SignupFormWithUseReducer() {
   //Using UseReducer Handle Forms
 
   const [updateState, dispatch] = useReducer(reducer, initializeState);
-
+  console.log(updateState);
   const handelOnSumit = async (e) => {
     e.preventDefault();
     try {
@@ -136,7 +136,7 @@ function SignupFormWithUseReducer() {
           onChange={(e) => dispatch({ type: 'CHECKED', value: e.target.value })}
           // value={formData.checked}
         />
-        <Button type="button" disabled={loading}>
+        <Button type="submit" disabled={loading}>
           <span> SignUP now</span>
         </Button>
         {updateState.error && <p className="error">{updateState.error}</p>}

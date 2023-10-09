@@ -40,6 +40,7 @@ export default function SignupForm() {
       setError(' ');
       setLoading(true);
       await singUp(formData.email, formData.password, formData.userName);
+      setLoading(false);
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -94,7 +95,7 @@ export default function SignupForm() {
           value={formData.checked}
           onChange={handleChange}
         />
-        <Button type="button" disabled={loading}>
+        <Button type="submit" disabled={loading}>
           <span> SignUP now</span>
         </Button>
         {error && <p className="error">{error}</p>}

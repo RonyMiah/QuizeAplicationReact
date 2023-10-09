@@ -24,6 +24,7 @@ function Videos() {
             video.noq > 0 ? (
               <Link
                 to={`/quize/${video.youtubeID}`}
+                state={video.title}
                 key={Math.random(video.youtubeID)}
               >
                 <Video
