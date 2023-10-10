@@ -31,7 +31,7 @@ function UseVideoList(page) {
         setLoading(true);
         //request firebase database
         const snapshot = await get(videoQuery);
-       
+
         setLoading(false);
 
         if (snapshot.exists()) {
@@ -50,9 +50,10 @@ function UseVideoList(page) {
       }
     };
 
-    setTimeout(() => {
-      fetchVideos();
-    }, 2000);
+    fetchVideos();
+    // setTimeout(() => {
+    //   fetchVideos();
+    // }, 2000);
   }, [page]);
   return {
     loading,
