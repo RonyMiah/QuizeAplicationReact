@@ -10,8 +10,8 @@ function Nav() {
         <ul>
           <li>
             <Link to="/" className={styles.brand}>
-              <img src={image} alt="Learn with Sumit Logo" />
-              <h3>Learn with Sumit</h3>
+              <img src={image} alt=" Boolean Programmers Logo" />
+              <h3> Boolean Programmers </h3>
             </Link>
           </li>
         </ul>
